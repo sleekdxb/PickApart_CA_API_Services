@@ -33,52 +33,52 @@ jobs:
         include:
           # --- Host 178.16.134.117 (most services) ---
           - service: Authentication_Service
-            url: https://auth.api.yourdomain.com
+            url: https://test-api-authentication-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Data_Amendment_Service
-            url: https://data.api.yourdomain.com
+            url: https://test-api-amendment-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Encryption_Service
-            url: https://enc.api.yourdomain.com
+            url: https://test-api-encryption-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
 
           - service: Files_Magangment_Service
-            url: https://files.api.yourdomain.com
+            url: https://test-api-files-magangment-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Garage_Service
-            url: https://garage.api.yourdomain.com
+            url: https://test-api-garage-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Mailing_Service
-            url: https://mail.api.yourdomain.com
+            url: https://test-api-mailing-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
 
           - service: Membership_Service
-            url: https://members.api.yourdomain.com
+            url: https://test-api-membership-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Parts_Service
-            url: https://parts.api.yourdomain.com
+            url: https://test-api-parts-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Vendor_Service
-            url: https://vendor.api.yourdomain.com
+            url: https://test-api-vendor-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
           - service: Notification_Service
-            url: https://notify.api.yourdomain.com
+            url: https://test-api-notification-service.pick-a-part.ca
             migrate: true
             host: 178.16.134.117
 
