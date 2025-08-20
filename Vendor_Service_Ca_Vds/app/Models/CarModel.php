@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class CarModel extends Model
+{
+
+
+    /** @use HasFactory<UserFactory> */
+    use HasFactory;
+
+    // Specify the table name if it doesn't follow Laravel's naming convention
+    protected $table = 'models';
+
+    // Define the fillable properties for mass assignment
+    protected $fillable = [
+        'model_id',
+        'make_id',
+        'name',
+    ];
+
+    // Optionally, you can specify the date format or specify the columns for timestamps
+    protected $dates = ['created_at', 'updated_at'];
+
+    public function part()
+    {
+        return $this->belongsTo(Part::class, 'model_id'); // vend_id is the foreign key
+    }
+
+    public function make()
+    {
+        return $this->belongsTo(Manufacturer::class, 'make_id'); // vend_id is the foreign key
+    }
+}
+
+
