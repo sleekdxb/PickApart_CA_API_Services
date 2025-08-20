@@ -1,0 +1,1973 @@
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899002&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=b9c415a6aafcd2e073feb7f76ff8817351471e3bc2db9bd774f377eaa0ef4b38.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899010&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=818e89bd6b3ddef50f9f2fe9d7bf8406e6798e90753427b454d052dcbd985dce.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899018&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=92ddba780bee7f13998f11df9f0967872175411da09bbbc2659d40f6f4d3baa2.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899025&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=19b11409b3556e7dbf8f973939967ed7f0e42ed26654358b1a3f4ac9c7c20118.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899033&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=1918791a132f14ed987dc8e36b58bd6d14f8dc3f6f71402520366c8e14270731.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899040&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=18ce43211188fa571b4fe37067a23260344407015651e37f6e801e5bd812381b.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899048&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=4b80a5a27b1d58689e5c83a954ff03b46a16a915a8b6178e462792b3cde172e3.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899055&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=2e0649e9a2bb0be0cb1d9a1a5d913a10802521d240ddec10d5dbdbb55de46359.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899063&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=c39d586a010b0f9a58cba33e748cb4b04fab298cb4c554ba3b171eb88506c4e1.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899071&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=a56839ae1a5c94a87527e027289b554835b87521afc028cab3f31e94e6d85f5e.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899078&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=78e3f7c101672276862ca17533ab948cc36718da5d31ed8e91525e231677b537.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899086&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=0b92d9b0f787d4420fb9a7f03fee47f3618c54b892f7f34d88879a97b53363b7.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899093&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=ed28d9c51880ad65cc103c189e7f5a0d9ec88bb5a9a5c7acebd45c94e3032e0b.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899101&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=01d999c9633ce03ecc6d325ed0c97d0973bdef5a73f078e7357326ff3a04bad9.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899108&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=dda6989bd437006de23bf6875c7bf8be71f68704631a05d2c69e974fedb87d93.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899116&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=fbc3490c9f176c8aebc618aca92a682b254f70b7cb94f3306bba45f0f16e71e1.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899123&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=9640d47064ac02b9120d6ae2a31e8f1a8c7a6d2323ac238ed1db91cb9d3dd54b.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899131&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=89eb366cb83d079057d061ea87e25d572cc611cda84fe61f1992d12ea66a16d0.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899139&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=d205a34761f2f7d1a96b4d79dd5f3a5fd7a158e885273828ae85e1ec7ee69f0e.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899146&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=91fd2b3a5fd608becb76f678b0867094ba57c5c3cfd49b735a3d47e3eb506ec8.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899301&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=34bcff64d1a9c4e2a75279c99c40dd3067a619753390ff7525c45371f5ee80be.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899309&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=693d8b1a58546164957a66573944100ce60101f1ba57eb4f45ef5ed8e487ca17.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899316&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=121b1d9ed9ef87a65d415023e92dfec02666fd52269d13de6c32995f88e60ca9.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899324&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=dc7cd151898aa6c26c46708da4613d8fb52971b380cb0ad5154e0ec3c660c747.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899331&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=674fb6d491880b182ab67b8426d17779e3060620f5eccb584418d0603b80a7c7.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899339&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=1dbb5e599eca873908557faefbe3cc5edee8fe889e8ec1bb118810aa8d5861ce.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899347&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=7655fa386365419d4973c101a8c69d25bc97462af046b1c2bcf3700df049583e.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899354&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=9b690ca4d1a44fc0de30e19bcb61baea15d5946d9de381393196fa0493bc5378.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899362&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=a0ca3cee86a8ee92f14978951d4a782616f1c0d0bb855de2e76e8e149f76b1bd.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899369&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=4cd1e4d6939b316e543788da3d1cdd8dc3c5d87f7f4de76fe476c2eec0dd01ba.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899377&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=0bd87be6891fda407528f92e78a42808ca8bb263f6295e4ddc95ff52e660ef11.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899385&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=f66c6cbe04d2adcdc8d04941999c9089f184b443097953002b0d578e04673261.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899392&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=74b40d02f3b746e9d792f4957a5d943035924b7d20609754a1d95b3275f6a4f3.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899400&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=0a6635f17c56deb58fc88364b98e099829c2581d5a1dd77be4c34f3d5ef738a9.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899407&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=2bb85be47f28e9c049aa59de6942f39c023c06b1d079b3fed6188fb286e627df.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899415&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=c845f5b8aacba36f86535a7ffe243f6cd76bf149aee73d9495c497e463295cfc.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899422&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=367ca640739459c2216c10f241d5f66c88496ec872ca4a9a1de3fd472319b79e.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899430&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=bdf1fe4da133386cea05183f39390d33759543f1c6587592396e99b3de7bd13c.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899438&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=388734627103a45bcc1e639c6ad8f61137afb198dcdaaa250c588d8eeb577973.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Failed to connect to api-magangment-service.pickapart.ae port 6002: Connection timed out (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for http://api-magangment-service.pickapart.ae:6002/apps/150745/events?auth_key=jz5dseynicgvb50yomfd&auth_timestamp=1747899445&auth_version=1.0&body_md5=c7594b094ea5f5ea44c344db9f3faa9a&auth_signature=658f8ce872b5c00a470cf1e7c512c7093878b619ed7be929c052c16b9d5510b2.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+      [2m+25 vendor frames [22m
+
+  26  app/Console/Commands/DispatchAdminEvent.php:34
+      App\Events\AdminEvent::dispatch()
+      [2m+13 vendor frames [22m
+
+  40  artisan:13
+      Illuminate\Foundation\Application::handleCommand()
+
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
+flock: failed to execute /home/api-magangment-service.pickapart.ae/public_html/run_dashboard.sh: Permission denied
