@@ -1,0 +1,265 @@
+name: CI/CD — Laravel microservices to cPanel (multi-host)
+
+on:
+  push:
+    branches: [ develop, main ]
+    paths:
+      - 'Authentication_Service/**'
+      - 'Data_Amendment_Service/**'
+      - 'Encryption_Service/**'
+      - 'Files_Magangment_Service/**'
+      - 'Garage_Service/**'
+      - 'Mailing_Service/**'
+      - 'Membership_Service/**'
+      - 'Parts_Service/**'
+      - 'Vendor_Service/**'
+      - 'Notification_Service/**'
+      - 'Managment_Service_Ca_Vds/**'
+      - 'Vendor_Service_Ca_Vds/**'
+  workflow_dispatch:
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    concurrency:
+      group: deploy-${{ matrix.service }}-${{ github.ref_name }}
+      cancel-in-progress: false
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # --- Host 178.16.134.117 (most services) ---
+          - service: Authentication_Service
+            url: https://auth.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Data_Amendment_Service
+            url: https://data.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Encryption_Service
+            url: https://enc.api.yourdomain.com
+            migrate: false
+            host: 178.16.134.117
+
+          - service: Files_Magangment_Service
+            url: https://files.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Garage_Service
+            url: https://garage.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Mailing_Service
+            url: https://mail.api.yourdomain.com
+            migrate: false
+            host: 178.16.134.117
+
+          - service: Membership_Service
+            url: https://members.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Parts_Service
+            url: https://parts.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Vendor_Service
+            url: https://vendor.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          - service: Notification_Service
+            url: https://notify.api.yourdomain.com
+            migrate: true
+            host: 178.16.134.117
+
+          # --- Host 195.35.9.105 (two services) ---
+          - service: Managment_Service_Ca_Vds
+            url: https://mgmt.api.yourdomain.com
+            migrate: true
+            host: 195.35.9.105
+            # If this host uses different cPanel user/base, uncomment:
+            # user: other_cpanel_user
+            # deploy_base: /home/other_cpanel_user/apps
+
+          - service: Vendor_Service_Ca_Vds
+            url: https://vendor-ca-vds.api.yourdomain.com
+            migrate: true
+            host: 195.35.9.105
+            # user: other_cpanel_user
+            # deploy_base: /home/other_cpanel_user/apps
+
+    env:
+      SERVICE_DIR: ${{ matrix.service }}
+      # Assign environment for branch (optional; enables approvals in Environments)
+      ENV_NAME: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Detect if THIS service changed between the previous commit on this ref and current
+      - name: Detect changes for this service
+        id: changes
+        shell: bash
+        run: |
+          base="${{ github.event.before }}"
+          # fallback to first commit if 'before' empty (e.g., first push on branch)
+          if [ -z "$base" ]; then base=$(git rev-list --max-parents=0 HEAD); fi
+          if git diff --name-only "$base"...HEAD | grep -E "^${{ env.SERVICE_DIR }}/" >/dev/null 2>&1; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Skip (no changes)
+        if: steps.changes.outputs.changed == 'false' && github.event_name != 'workflow_dispatch'
+        run: echo "No changes in ${{ env.SERVICE_DIR }} — skipping." && exit 0
+
+      # PHP toolchain
+      - name: Setup PHP (Composer)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles(format('{0}/composer.lock', env.SERVICE_DIR)) }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Composer install (no-dev) — ${{ env.SERVICE_DIR }}
+        working-directory: ${{ env.SERVICE_DIR }}
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+      # Optional Node build (only if package.json exists)
+      - name: Setup Node (optional)
+        if: hashFiles(format('{0}/package.json', env.SERVICE_DIR)) != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: ${{ env.SERVICE_DIR }}/package-lock.json
+
+      - name: Build assets (optional)
+        if: hashFiles(format('{0}/package.json', env.SERVICE_DIR)) != ''
+        working-directory: ${{ env.SERVICE_DIR }}
+        run: |
+          npm ci
+          npm run build || echo "No build script; skipping"
+
+      # PHPUnit (if present)
+      - name: Run tests (if phpunit present)
+        working-directory: ${{ env.SERVICE_DIR }}
+        run: |
+          if [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; then
+            composer require --dev phpunit/phpunit:^10 --no-interaction
+            ./vendor/bin/phpunit --colors=always
+          else
+            echo "No tests for ${{ env.SERVICE_DIR }}"
+          fi
+
+      # Exclusions for rsync (we deploy vendor + built assets; keep .env on server)
+      - name: Exclude list for rsync
+        run: |
+          cat > exclude.txt <<'EOF'
+          .git/
+          .github/
+          node_modules/
+          tests/
+          storage/logs/*
+          storage/framework/cache/*
+          storage/framework/sessions/*
+          storage/framework/views/*
+          .env
+          .env.*
+          EOF
+
+      - name: Setup SSH key
+        run: |
+          echo "${{ secrets.CP_SSH_KEY }}" > key.pem
+          chmod 600 key.pem
+
+      - name: Compute remote vars
+        id: envs
+        shell: bash
+        run: |
+          HOST="${{ matrix.host }}"
+          USER="${{ matrix.user }}"
+          BASE="${{ matrix.deploy_base }}"
+          # fall back to repo secrets when not set in matrix
+          HOST="${HOST:-${{ secrets.CP_HOST }}}"
+          USER="${USER:-${{ secrets.CP_USER }}}"
+          BASE="${BASE:-${{ secrets.DEPLOY_BASE }}}"
+          echo "host=$HOST" >> $GITHUB_OUTPUT
+          echo "user=$USER" >> $GITHUB_OUTPUT
+          echo "remote_dir=$BASE/${{ env.SERVICE_DIR }}" >> $GITHUB_OUTPUT
+
+      - name: Rsync to remote
+        run: |
+          rsync -az --delete \
+            -e "ssh -i key.pem -o StrictHostKeyChecking=no" \
+            --exclude-from=exclude.txt \
+            "./${SERVICE_DIR}/" \
+            "${{ steps.envs.outputs.user }}@${{ steps.envs.outputs.host }}:${{ steps.envs.outputs.remote_dir }}/"
+
+      - name: Remote artisan (cache + migrate + storage:link)
+        run: |
+          SSH="ssh -i key.pem -o StrictHostKeyChecking=no ${{ steps.envs.outputs.user }}@${{ steps.envs.outputs.host }}"
+          $SSH "bash -lc '
+            set -e
+            cd ${{ steps.envs.outputs.remote_dir }}
+
+            # pick a PHP CLI
+            PHP_CLI=php
+            if ! command -v \$PHP_CLI >/dev/null 2>&1; then
+              if [ -x /opt/cpanel/ea-php82/root/usr/bin/php ]; then
+                PHP_CLI=/opt/cpanel/ea-php82/root/usr/bin/php
+              fi
+            fi
+
+            # Ensure writable dirs
+            mkdir -p storage/framework/{cache,sessions,views} bootstrap/cache
+            chmod -R ug+rw storage bootstrap/cache || true
+
+            # Maintenance only on main
+            if [ \"${{ github.ref_name }}\" = \"main\" ]; then \$PHP_CLI artisan down || true; fi
+
+            # Link storage if not linked
+            if [ ! -e public/storage ]; then \$PHP_CLI artisan storage:link || true; fi
+
+            # Clear & rebuild caches
+            \$PHP_CLI artisan config:clear  || true
+            \$PHP_CLI artisan route:clear   || true
+            \$PHP_CLI artisan view:clear    || true
+            \$PHP_CLI artisan optimize      || true   # builds config/route caches
+
+            # DB migrations (toggle by matrix.migrate)
+            if [ \"${{ matrix.migrate }}\" = \"true\" ]; then \$PHP_CLI artisan migrate --force || true; fi
+
+            # Restart queue workers if present (optional)
+            if \$PHP_CLI artisan | grep -q \"queue:restart\"; then \$PHP_CLI artisan queue:restart || true; fi
+            if \$PHP_CLI artisan | grep -q \"horizon\"; then \$PHP_CLI artisan horizon:terminate || true; fi
+
+            # Back up (optional hook; add your script here)
+
+            if [ \"${{ github.ref_name }}\" = \"main\" ]; then \$PHP_CLI artisan up || true; fi
+          '"
+
+      - name: Smoke check
+        run: |
+          curl -fsSL --max-time 25 "${{ matrix.url }}" >/dev/null || \
+            (echo "Smoke check failed for ${{ matrix.url }}" && exit 1)
