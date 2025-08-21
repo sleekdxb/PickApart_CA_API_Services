@@ -69,7 +69,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Detect if THIS service changed
       - name: Detect changes for this service
         id: changes
         shell: bash
@@ -86,7 +85,7 @@ jobs:
         if: steps.changes.outputs.changed == 'false' && github.event_name != 'workflow_dispatch'
         run: echo "No changes in ${{ env.SERVICE_DIR }} — skipping." && exit 0
 
-      # PHP / Composer only (no Node, no other optional setup)
+      # PHP / Composer only (no Node)
       - name: Setup PHP (Composer)
         uses: shivammathur/setup-php@v2
         with:
@@ -136,6 +135,7 @@ jobs:
           fi
           chmod 600 key.pem
 
+      # Compute host/user/base/port (22 fallback)
       - name: Compute remote vars
         id: envs
         shell: bash
@@ -144,26 +144,30 @@ jobs:
             HOST="${{ secrets.CP2_HOST }}"
             USER="${{ secrets.CP2_USER }}"
             BASE="${{ secrets.DEPLOY2_BASE }}"
+            PORT="${{ secrets.CP2_PORT }}"
           else
             HOST="${{ secrets.CP_HOST }}"
             USER="${{ secrets.CP_USER }}"
             BASE="${{ secrets.DEPLOY_BASE }}"
+            PORT="${{ secrets.CP_PORT }}"
           fi
+          : "${PORT:=22}"   # default to 22 if not set
           echo "host=$HOST" >> $GITHUB_OUTPUT
           echo "user=$USER" >> $GITHUB_OUTPUT
           echo "remote_dir=$BASE/${{ env.SERVICE_DIR }}" >> $GITHUB_OUTPUT
+          echo "port=$PORT" >> $GITHUB_OUTPUT
 
       - name: Rsync to remote
         run: |
           rsync -az --delete \
-            -e "ssh -i key.pem -o StrictHostKeyChecking=no" \
+            -e "ssh -i key.pem -o StrictHostKeyChecking=no -p ${{ steps.envs.outputs.port }}" \
             --exclude-from=exclude.txt \
             "./${SERVICE_DIR}/" \
             "${{ steps.envs.outputs.user }}@${{ steps.envs.outputs.host }}:${{ steps.envs.outputs.remote_dir }}/"
 
       - name: Remote artisan (cache + migrate + storage:link)
         run: |
-          SSH="ssh -i key.pem -o StrictHostKeyChecking=no ${{ steps.envs.outputs.user }}@${{ steps.envs.outputs.host }}"
+          SSH="ssh -p ${{ steps.envs.outputs.port }} -i key.pem -o StrictHostKeyChecking=no ${{ steps.envs.outputs.user }}@${{ steps.envs.outputs.host }}"
           $SSH "bash -lc '
             set -e
             cd ${{ steps.envs.outputs.remote_dir }}
