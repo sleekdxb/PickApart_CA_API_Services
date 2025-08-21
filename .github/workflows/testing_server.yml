@@ -20,67 +20,63 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # --- Host 178.16.134.117 (most services) ---
+          # --- Host 178.16.134.117 (uses default secrets) ---
           - service: Authentication_Service
             url: https://test-api-authentication-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Data_Amendment_Service
             url: https://test-api-amendment-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Encryption_Service
             url: https://test-api-encryption-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Files_Magangment_Service
             url: https://test-api-files-magangment-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Garage_Service
             url: https://test-api-garage-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Mailing_Service
             url: https://test-api-mailing-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Membership_Service
             url: https://test-api-membership-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Parts_Service
             url: https://test-api-parts-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Vendor_Service
             url: https://test-api-vendor-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
-
           - service: Notification_Service
             url: https://test-api-notification-service.pick-a-part.ca
             migrate: false
             host: 178.16.134.117
 
-          # --- Host 195.35.9.105 (two services) ---
+          # --- Host 195.35.9.105 (override with *separate* secrets) ---
           - service: Managment_Service_Ca_Vds
             url: https://mgmt.api.yourdomain.com
             migrate: false
-            host: 195.35.9.105
-
+            host: ${{ secrets.CP2_HOST }} # e.g. 195.35.9.105
+            user: ${{ secrets.CP2_USER }} # cPanel/SSH user for this host
+            deploy_base: ${{ secrets.DEPLOY2_BASE }} # e.g. /home/other_user/apps
+            ssh_key: ${{ secrets.CP2_SSH_KEY }} # optional (if different key)
           - service: Vendor_Service_Ca_Vds
             url: https://vendor-ca-vds.api.yourdomain.com
             migrate: false
-            host: 195.35.9.105
+            host: ${{ secrets.CP2_HOST }}
+            user: ${{ secrets.CP2_USER }}
+            deploy_base: ${{ secrets.DEPLOY2_BASE }}
+            ssh_key: ${{ secrets.CP2_SSH_KEY }}
 
     env:
       SERVICE_DIR: ${{ matrix.service }}
@@ -165,18 +161,21 @@ jobs:
           .env.*
           EOF
 
-      - name: Setup SSH key
+      - name: Setup SSH key (supports alternate key per service)
         run: |
-          echo "${{ secrets.CP_SSH_KEY }}" > key.pem
+          KEY_CONTENT="${{ matrix.ssh_key }}"
+          if [ -z "$KEY_CONTENT" ]; then KEY_CONTENT="${{ secrets.CP_SSH_KEY }}"; fi
+          echo "$KEY_CONTENT" > key.pem
           chmod 600 key.pem
 
-      - name: Compute remote vars
+      - name: Compute remote vars (fallback to default secrets)
         id: envs
         shell: bash
         run: |
           HOST="${{ matrix.host }}"
           USER="${{ matrix.user }}"
           BASE="${{ matrix.deploy_base }}"
+          # fall back to repo secrets when not set in matrix
           HOST="${HOST:-${{ secrets.CP_HOST }}}"
           USER="${USER:-${{ secrets.CP_USER }}}"
           BASE="${BASE:-${{ secrets.DEPLOY_BASE }}}"
@@ -210,7 +209,6 @@ jobs:
             chmod -R ug+rw storage bootstrap/cache || true
 
             if [ \"${{ github.ref_name }}\" = \"main\" ]; then \$PHP_CLI artisan down || true; fi
-
             if [ ! -e public/storage ]; then \$PHP_CLI artisan storage:link || true; fi
 
             \$PHP_CLI artisan config:clear  || true
