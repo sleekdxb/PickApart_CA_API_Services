@@ -15,7 +15,6 @@ jobs:
       contents: read
     concurrency:
       group: deploy-${{ matrix.service }}-${{ github.ref_name }}
-      cancel-in-progress: false
     strategy:
       fail-fast: false
       matrix:
@@ -70,7 +69,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Detect if THIS service changed between the previous commit on this ref and current
+      # Detect if THIS service changed
       - name: Detect changes for this service
         id: changes
         shell: bash
@@ -87,6 +86,7 @@ jobs:
         if: steps.changes.outputs.changed == 'false' && github.event_name != 'workflow_dispatch'
         run: echo "No changes in ${{ env.SERVICE_DIR }} — skipping." && exit 0
 
+      # PHP / Composer only (no Node, no other optional setup)
       - name: Setup PHP (Composer)
         uses: shivammathur/setup-php@v2
         with:
@@ -94,41 +94,22 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      # Pick project composer.phar if present, and print version
       - name: Select Composer & show version
         id: comp
         working-directory: ${{ env.SERVICE_DIR }}
         shell: bash
         run: |
           if [ -f composer.phar ]; then
-            echo "Using project composer.phar"
             echo "composer_bin=php composer.phar" >> "$GITHUB_OUTPUT"
             php composer.phar -V
           else
-            echo "Using runner Composer"
             echo "composer_bin=composer" >> "$GITHUB_OUTPUT"
             composer -V
           fi
 
-      - name: Composer install (no-dev) — ${{ env.SERVICE_DIR }}
+      - name: Composer install (no-dev)
         working-directory: ${{ env.SERVICE_DIR }}
         run: ${{ steps.comp.outputs.composer_bin }} install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-
-      # Optional Node build (only if package.json exists)
-      - name: Setup Node (optional)
-        if: hashFiles(format('{0}/package.json', env.SERVICE_DIR)) != ''
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-          cache-dependency-path: ${{ env.SERVICE_DIR }}/package-lock.json
-
-      - name: Build assets (optional)
-        if: hashFiles(format('{0}/package.json', env.SERVICE_DIR)) != ''
-        working-directory: ${{ env.SERVICE_DIR }}
-        run: |
-          npm ci
-          npm run build || echo "No build script; skipping"
 
       - name: Exclude list for rsync
         run: |
@@ -145,7 +126,7 @@ jobs:
           .env.*
           EOF
 
-      # Use alternate or default SSH key based on matrix.use_alt
+      # SSH key (default vs alt)
       - name: Setup SSH key
         run: |
           if [ "${{ matrix.use_alt }}" = "true" ] && [ -n "${{ secrets.CP2_SSH_KEY }}" ]; then
@@ -155,7 +136,6 @@ jobs:
           fi
           chmod 600 key.pem
 
-      # Compute host/user/base from CP_* or CP2_* secrets (no secrets in matrix!)
       - name: Compute remote vars
         id: envs
         shell: bash
