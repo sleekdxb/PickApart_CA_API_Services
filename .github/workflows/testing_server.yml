@@ -2,20 +2,20 @@ name: CI/CD — Laravel microservices to cPanel (multi-host)
 
 on:
   push:
-    branches: [ develop, main ]
+    branches: [develop, main]
     paths:
-      - 'Authentication_Service/**'
-      - 'Data_Amendment_Service/**'
-      - 'Encryption_Service/**'
-      - 'Files_Magangment_Service/**'
-      - 'Garage_Service/**'
-      - 'Mailing_Service/**'
-      - 'Membership_Service/**'
-      - 'Parts_Service/**'
-      - 'Vendor_Service/**'
-      - 'Notification_Service/**'
-      - 'Managment_Service_Ca_Vds/**'
-      - 'Vendor_Service_Ca_Vds/**'
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
+      - "/**"
   workflow_dispatch:
 
 jobs:
@@ -34,12 +34,12 @@ jobs:
           # --- Host 178.16.134.117 (most services) ---
           - service: Authentication_Service
             url: https://test-api-authentication-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Data_Amendment_Service
             url: https://test-api-amendment-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Encryption_Service
@@ -49,12 +49,12 @@ jobs:
 
           - service: Files_Magangment_Service
             url: https://test-api-files-magangment-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Garage_Service
             url: https://test-api-garage-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Mailing_Service
@@ -64,28 +64,28 @@ jobs:
 
           - service: Membership_Service
             url: https://test-api-membership-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Parts_Service
             url: https://test-api-parts-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Vendor_Service
             url: https://test-api-vendor-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           - service: Notification_Service
             url: https://test-api-notification-service.pick-a-part.ca
-            migrate: true
+            migrate: false
             host: 178.16.134.117
 
           # --- Host 195.35.9.105 (two services) ---
           - service: Managment_Service_Ca_Vds
             url: https://mgmt.api.yourdomain.com
-            migrate: true
+            migrate: false
             host: 195.35.9.105
             # If this host uses different cPanel user/base, uncomment:
             # user: other_cpanel_user
@@ -93,7 +93,7 @@ jobs:
 
           - service: Vendor_Service_Ca_Vds
             url: https://vendor-ca-vds.api.yourdomain.com
-            migrate: true
+            migrate: false
             host: 195.35.9.105
             # user: other_cpanel_user
             # deploy_base: /home/other_cpanel_user/apps
@@ -129,7 +129,7 @@ jobs:
       - name: Setup PHP (Composer)
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: "8.2"
           tools: composer:v2
           coverage: none
 
@@ -141,17 +141,33 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
 
+      # NEW: pick project composer.phar if present, and print version
+      - name: Select Composer & show version
+        id: comp
+        working-directory: ${{ env.SERVICE_DIR }}
+        shell: bash
+        run: |
+          if [ -f composer.phar ]; then
+            echo "Using project composer.phar"
+            echo "composer_bin=php composer.phar" >> "$GITHUB_OUTPUT"
+            php composer.phar -V
+          else
+            echo "Using runner Composer"
+            echo "composer_bin=composer" >> "$GITHUB_OUTPUT"
+            composer -V
+          fi
+
       - name: Composer install (no-dev) — ${{ env.SERVICE_DIR }}
         working-directory: ${{ env.SERVICE_DIR }}
-        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+        run: ${{ steps.comp.outputs.composer_bin }} install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
       # Optional Node build (only if package.json exists)
       - name: Setup Node (optional)
         if: hashFiles(format('{0}/package.json', env.SERVICE_DIR)) != ''
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: "20"
+          cache: "npm"
           cache-dependency-path: ${{ env.SERVICE_DIR }}/package-lock.json
 
       - name: Build assets (optional)
@@ -166,7 +182,7 @@ jobs:
         working-directory: ${{ env.SERVICE_DIR }}
         run: |
           if [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; then
-            composer require --dev phpunit/phpunit:^10 --no-interaction
+            ${{ steps.comp.outputs.composer_bin }} require --dev phpunit/phpunit:^10 --no-interaction
             ./vendor/bin/phpunit --colors=always
           else
             echo "No tests for ${{ env.SERVICE_DIR }}"
