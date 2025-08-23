@@ -28,7 +28,7 @@ class OtpHelper
             'acc_id' => $acc_id,
             'otp' => $otp,
             'is_used' => 0,
-            'expires_at' => Carbon::now()->addMinute()->addSeconds(30),
+            'expires_at' => Carbon::now()->addMinute()->addSeconds(300),
         ];
 
         // Only add 'sub_vend_id' if it is not empty

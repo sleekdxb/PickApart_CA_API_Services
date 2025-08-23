@@ -9,20 +9,11 @@ return [
 
     'guards' => [
         'api' => [
-            'driver' => 'jwt', // ✅ you're using JWT — good
-            'provider' => 'accounts', // ✅ using the Account model
-        ],
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users', // optional fallback if you use web session logins
+            'driver' => 'jwt',
+            'provider' => 'accounts',
         ],
     ],
-
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
         'accounts' => [
             'driver' => 'eloquent',
             'model' => App\Models\Account::class,

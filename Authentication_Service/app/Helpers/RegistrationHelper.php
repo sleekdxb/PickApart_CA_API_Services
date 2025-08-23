@@ -66,7 +66,7 @@ class RegistrationHelper
                 'lastName' => $request->input('lastName'),
                 'email' => $encryptedEmail,
                 'phone' => $encryptedPhone,
-                'fcm_token' => $encryptedFcm_token,
+                'fcm_token' => $encryptedFcm_token ?? '',
                 'account_type' => $encryptedAccountType,
                 'password' => Hash::make($request->input('password')),  // Hashing the password
                 'created_at' => now(),  // Setting created_at to current time
@@ -163,7 +163,7 @@ class RegistrationHelper
             ], 500);
         }
     }
-    
+
     public static function createNotificationChannel(string|int $accId, string $accountType, array $extraData = [])
     {
         $type = strtoupper(trim($accountType));

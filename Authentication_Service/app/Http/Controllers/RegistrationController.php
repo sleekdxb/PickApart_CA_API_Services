@@ -45,7 +45,7 @@ class RegistrationController extends Controller
             'password' => 'required|string|min:8',
             'account_type' => 'required|string',
             'device_info' => 'nullable|string',
-            'fcm_token' => 'required|string'
+            'fcm_token' => 'nullable|string'
         ]);
 
         // Custom validation to check for existing decrypted email
@@ -86,46 +86,46 @@ class RegistrationController extends Controller
         // Call helper to create the account
         return RegistrationHelper::createAccount($accountData);
     }
-    
-  public function updateFcmToken(Request $request)
-{
-    // Run header validation first
-    $headerValidationResponse = $this->headerValidationController->validateHeaders($request);
-    if ($headerValidationResponse) {
-        return $headerValidationResponse; // If headers invalid, return immediately
-    }
 
-    // Use manual Validator to validate incoming request data
-    $validator = Validator::make($request->all(), [
-        'acc_id'    => 'required|string|exists:accounts,acc_id',
-        'fcm_token' => 'required|string|max:4096',
-    ]);
+    public function updateFcmToken(Request $request)
+    {
+        // Run header validation first
+        $headerValidationResponse = $this->headerValidationController->validateHeaders($request);
+        if ($headerValidationResponse) {
+            return $headerValidationResponse; // If headers invalid, return immediately
+        }
 
-    if ($validator->fails()) {
+        // Use manual Validator to validate incoming request data
+        $validator = Validator::make($request->all(), [
+            'acc_id' => 'required|string|exists:accounts,acc_id',
+            'fcm_token' => 'required|string|max:4096',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        // Encrypt the FCM token using your encryption service
+        $encryptedDataRespond = EncryptionServiceConnections::encryptData([
+            'fcm_token' => $request->input('fcm_token')
+        ]);
+        $fcm_token = $encryptedDataRespond['data']['fcm_token'];
+
+        // Find account by acc_id
+        $account = Account::where('acc_id', $request->input('acc_id'))->firstOrFail();
+
+        // Update account with encrypted token
+        $account->update([
+            'fcm_token' => $fcm_token,
+        ]);
+
         return response()->json([
-            'status'  => false,
-            'message' => 'Validation failed',
-            'errors'  => $validator->errors(),
-        ], 422);
+            'status' => true,
+            'message' => 'FCM token updated successfully',
+        ]);
     }
-
-    // Encrypt the FCM token using your encryption service
-    $encryptedDataRespond = EncryptionServiceConnections::encryptData([
-        'fcm_token' => $request->input('fcm_token')
-    ]);
-    $fcm_token = $encryptedDataRespond['data']['fcm_token'];
-
-    // Find account by acc_id
-    $account = Account::where('acc_id', $request->input('acc_id'))->firstOrFail();
-
-    // Update account with encrypted token
-    $account->update([
-        'fcm_token' => $fcm_token,
-    ]);
-
-    return response()->json([
-        'status'  => true,
-        'message' => 'FCM token updated successfully',
-    ]);
-}
 }
