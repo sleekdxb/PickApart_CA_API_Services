@@ -3,16 +3,24 @@
 return [
 
     'defaults' => [
-        'guard' => 'api', // ✅ Change 'web' to 'api' if you're using JWT for all requests
-        'passwords' => 'accounts', // ✅ Align with the correct provider
+        'guard' => env('AUTH_GUARD', 'api'),
+        'passwords' => 'accounts',
     ],
 
     'guards' => [
+        // Minimal web guard (session) to satisfy any 'auth:web' references
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'accounts',
+        ],
+
+        // JWT guard for APIs
         'api' => [
             'driver' => 'jwt',
             'provider' => 'accounts',
         ],
     ],
+
     'providers' => [
         'accounts' => [
             'driver' => 'eloquent',
@@ -21,14 +29,9 @@ return [
     ],
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
-        ],
-        'accounts' => [ // ✅ Add this for completeness
+        'accounts' => [
             'provider' => 'accounts',
+            // If your Laravel uses 'password_reset_tokens', change the table name accordingly:
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

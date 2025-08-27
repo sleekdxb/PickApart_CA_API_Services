@@ -11,6 +11,7 @@ use App\Helpers\FirebaseMessagingHelper as FCM;
 use App\Models\Account;
 use App\Models\GarageNotification;
 use App\Services\EncryptionServiceConnections;
+use App\Models\GarageSession;
 
 use Exception;
 
@@ -18,16 +19,15 @@ class GarageNotificationController extends Controller
 {
     public function sendGarage(Request $request): JsonResponse
     {
-        // Validate request with custom rule
+        // Validate request (accept data as array OR JSON string)
         $validator = Validator::make($request->all(), [
             'acc_id' => 'required|string',
             'gra_id' => 'required|string',
-            'type' => 'required|string',
+            'type' => 'required|string|max:255',
             'notifiable_id' => 'required|string',
             'data' => 'required|array',
         ]);
 
-        // If validation fails, return 422 with errors
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
@@ -37,120 +37,171 @@ class GarageNotificationController extends Controller
         }
 
         try {
+            // Normalize data to array
             $rawData = $request->input('data');
             $data = is_array($rawData) ? $rawData : (json_decode($rawData, true) ?: []);
-            // Save to the database
+
+            // Save to DB first
             $notification = GarageNotification::create([
                 'acc_id' => $request->acc_id,
                 'gra_id' => $request->gra_id,
                 'notifiable_id' => $request->notifiable_id,
                 'type' => $request->type,
-                'data' => json_encode($request->data),
+                'data' => json_encode($data, JSON_UNESCAPED_UNICODE),
                 'read' => false,
                 'read_at' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-            $push = [
-                'attempted' => false,
-                'ok' => false,
-                'http_code' => null,
-                'response' => null,
-                'error' => null,
-            ];
 
-            // Fetch account & token (PHP 7 compatible)
-            $account = Account::where('acc_id', $request->acc_id)->first();
-            $fcmToken = $account ? $account->fcm_token : null;
+            // ---------------------------------------------
+            // NEW: Collect all active session FCM tokens
+            // ---------------------------------------------
+            // Expecting GarageSession with columns: acc_id, is_active, fcm_token
+            $rawTokens = GarageSession::query()
+                ->where('acc_id', $request->acc_id)
+                ->where('is_active', 1)
+                ->pluck('fcm_token')
+                ->filter(function ($t) {
+                    return is_string($t) && trim($t) !== '';
+                })
+                ->unique()
+                ->values()
+                ->all();
 
-            if (!$fcmToken) {
+            if (empty($rawTokens)) {
                 return response()->json([
                     'status' => true,
-                    'message' => 'Notification stored; account has no FCM token',
+                    'message' => 'Notification stored; no active sessions with FCM tokens.',
                     'notification' => $notification,
-                    'push' => $push,
+                    'push' => [],
                 ], 202);
             }
 
+            // Index tokens: ['fcm1' => token1, 'fcm2' => token2, ...]
+            $fcmTokensIndexed = [];
+            foreach ($rawTokens as $i => $token) {
+                $fcmTokensIndexed['fcm' . ($i + 1)] = $token;
+            }
+
+            // ---------------------------------------------
+            // Decrypt tokens WITHOUT account_type
+            // Try bulk; if fails, fall back to per-token
+            // ---------------------------------------------
+            $decryptedTokens = [];
+            $decryptErrors = [];
+
             try {
-                $dec = EncryptionServiceConnections::decryptData(['fcm_token' => $fcmToken]);
-                $decryptedFcmToken = isset($dec['data']['fcm_token']) ? $dec['data']['fcm_token'] : null;
-            } catch (Exception $e) {
-                $push['attempted'] = true;
-                $push['error'] = 'Failed to decrypt FCM token: ' . $e->getMessage();
+                $dec = EncryptionServiceConnections::decryptData([
+                    'fcm_token' => $fcmTokensIndexed,
+                ]);
 
+                $decoded = $dec['data']['fcm_token'] ?? null;
+                if (is_array($decoded)) {
+                    foreach ($decoded as $key => $val) {
+                        if (is_string($val) && trim($val) !== '') {
+                            $decryptedTokens[$key] = $val;
+                        }
+                    }
+                } elseif (is_string($decoded) && count($fcmTokensIndexed) === 1) {
+                    $decryptedTokens['fcm1'] = $decoded;
+                }
+            } catch (\Exception $e) {
+                // Bulk decrypt failed => try per-token
+                foreach ($fcmTokensIndexed as $key => $cipher) {
+                    try {
+                        $res = EncryptionServiceConnections::decryptData(['fcm_token' => [$key => $cipher]]);
+                        $dval = $res['data']['fcm_token'][$key] ?? null;
+                        if (is_string($dval) && trim($dval) !== '') {
+                            $decryptedTokens[$key] = $dval;
+                        } else {
+                            $decryptErrors[$key] = 'Empty decrypted token';
+                        }
+                    } catch (\Exception $ex) {
+                        $decryptErrors[$key] = $ex->getMessage();
+                    }
+                }
+            }
+
+            if (empty($decryptedTokens)) {
                 return response()->json([
                     'status' => true,
-                    'message' => 'Notification stored; push not sent (decrypt failed)',
+                    'message' => 'Notification stored; push not sent (decrypt failed or empty).',
                     'notification' => $notification,
-                    'push' => $push,
+                    'push' => [],
+                    'decrypt_errors' => $decryptErrors,
                 ], 207);
             }
 
-            if (!$decryptedFcmToken) {
-                $push['attempted'] = true;
-                $push['error'] = 'Decrypted token is empty';
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Notification stored; push not sent (empty token)',
-                    'notification' => $notification,
-                    'push' => $push,
-                ], 207);
-            }
-
+            // Title/body fallbacks
             $title = (string) ($data['title'] ?? $request->input('title', 'Notification'));
             $body = (string) ($data['body'] ?? $data['subject'] ?? $request->input('body', ''));
-            try {
-                $result = FCM::sendToToken(
-                    $decryptedFcmToken,
-                    ['title' => $title, 'body' => $body],
 
-                    // Merge standard metadata with user data (stringify complex values)
-                    [
-                        'notification_id' => (string) ($notification->id ?? ''),
-                        'type' => (string) $notification->type,
-                        'acc_id' => (string) $request->acc_id,
-                        'gra_id' => (string) $request->gra_id,
-                    ] + array_map(
-                        function ($v) {
-                            return is_scalar($v) || $v === null
-                                ? (string) $v
-                                : json_encode($v, JSON_UNESCAPED_UNICODE);
-                        },
-                        $data
-                    )
-                );
+            // ---------------------------------------------
+            // Send to each decrypted token
+            // ---------------------------------------------
+            $push = [];
+            $sentCount = 0;
 
-                $push = [
-                    'attempted' => true,
-                    'ok' => isset($result['ok']) ? (bool) $result['ok'] : false,
-                    'http_code' => $result['status'] ?? null,
-                    'response' => $result['response'] ?? null,
-                    'error' => null,
-                ];
+            foreach ($decryptedTokens as $key => $token) {
+                try {
+                    $result = FCM::sendToToken(
+                        $token,
+                        ['title' => $title, 'body' => $body],
+                        [
+                            'notification_id' => (string) ($notification->id ?? ''),
+                            'type' => (string) $notification->type,
+                            'acc_id' => (string) $request->acc_id,
+                            'gra_id' => (string) $request->gra_id,
+                            'token_key' => (string) $key,
+                        ] + array_map(
+                            function ($v) {
+                                return is_scalar($v) || $v === null
+                                    ? (string) $v
+                                    : json_encode($v, JSON_UNESCAPED_UNICODE);
+                            },
+                            $data
+                        )
+                    );
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Notification stored and push sent',
-                    'notification' => $notification,
-                    'push' => $push,
-                ], 200);
+                    $ok = isset($result['ok']) ? (bool) $result['ok'] : false;
+                    if ($ok) {
+                        $sentCount++;
+                    }
 
-            } catch (Exception $e) {
-                $push['attempted'] = true;
-                $push['ok'] = false;
-                $push['error'] = $e->getMessage();
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Notification stored; push not delivered',
-                    'notification' => $notification,
-                    'push' => $push,
-                ], 207);
+                    $push[$key] = [
+                        'attempted' => true,
+                        'ok' => $ok,
+                        'http_code' => $result['status'] ?? null,
+                        'response' => $result['response'] ?? null,
+                        'error' => null,
+                    ];
+                } catch (\Exception $e) {
+                    $push[$key] = [
+                        'attempted' => true,
+                        'ok' => false,
+                        'http_code' => null,
+                        'response' => null,
+                        'error' => $e->getMessage(),
+                    ];
+                }
             }
 
-        } catch (Exception $e) {
+            $message = $sentCount > 0
+                ? "Notification stored and push sent to {$sentCount} active session(s)."
+                : "Notification stored; push not delivered to any active session.";
+
+            return response()->json([
+                'status' => true,
+                'message' => $message,
+                'notification' => $notification,
+                'tokens_submitted' => count($fcmTokensIndexed),
+                'tokens_decrypted' => count($decryptedTokens),
+                'push' => $push,
+                'decrypt_errors' => $decryptErrors,
+            ], $sentCount > 0 ? 200 : 207);
+
+        } catch (\Exception $e) {
             Log::error('Garage notification error:', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
@@ -162,6 +213,5 @@ class GarageNotificationController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
-
     }
 }

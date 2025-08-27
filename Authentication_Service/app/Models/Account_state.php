@@ -17,8 +17,8 @@ class Account_state extends Model
         'doer_acc_id',
         'note',
         'reason',
-        'state_code', 
-        'state_name', 
+        'state_code',
+        'state_name',
         'time_period',
         'created_at',
         'updated_at'

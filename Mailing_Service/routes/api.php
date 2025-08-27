@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 
 // Route to send an email for account verification
+Route::post('/auth-two-email', [EmailController::class, 'sendEmailTowFactor']);
 Route::post('/send-email', [EmailController::class, 'sendEmail']);
 Route::post('/set-emails-subscription-mail', [EmailController::class, 'setEmailsSubscriptionMail']);
 Route::post('/set-emails-registration-success-mail', [EmailController::class, 'setEmailsRegistrationSuccessMail']);

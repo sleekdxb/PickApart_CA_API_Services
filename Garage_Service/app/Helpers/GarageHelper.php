@@ -588,7 +588,7 @@ class GarageHelper
     public static function getAccountGarageProfileById(Request $request)
     {
 
-        $garageQuery = Garage::query()->with('files')->where('acc_id', $request->acc_id);
+        $garageQuery = Garage::query()->with('files', 'notification')->where('acc_id', $request->acc_id);
 
         $account = Account::where('acc_id', $request->acc_id)->first();
         $accountInfo = [

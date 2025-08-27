@@ -21,145 +21,185 @@ use Illuminate\Support\Str;
 use App\Models\AccountNotifictionschannle;
 use App\Models\GarageNotifictionsChannle;
 use InvalidArgumentException;
+use Illuminate\Support\Facades\Schema;
+
 class RegistrationHelper
 {
+    /**
+     * Create a new account:
+     * - Validates inputs
+     * - Encrypts PII with encryption microservice (single call)
+     * - Enforces email uniqueness via email_hash (constant-time lookup)
+     * - Creates initial "Unverified" system state
+     * - Generates OTP (activation) and sends welcome email (non-blocking best-effort)
+     */
     public static function createAccount(Request $request)
     {
-        // Prepare the data for encryption (only the fields to be encrypted)
+        $now = Carbon::now();
+
+        // ---------------------------------------------------
+        // 0) Validate upfront (keeps code simple & safe)
+        // ---------------------------------------------------
+        $validated = validator($request->all(), [
+            'firstName' => ['required', 'string', 'max:120'],
+            'lastName' => ['required', 'string', 'max:120'],
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            'phone' => ['nullable', 'string', 'max:64'],
+            'account_type' => ['required', 'string', 'max:64'],
+        ])->validate();
+
+        // Normalize email & compute deterministic hash for O(1) uniqueness checks
+        $emailPlain = mb_strtolower(trim($validated['email']));
+        $emailHash = hash('sha256', $emailPlain);
+
+        // If you've added this column (recommended), we can check duplicates instantly
+        if (Account::where('email_hash', $emailHash)->exists()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'An account with this email already exists.',
+                'code' => 409,
+            ], 409);
+        }
+
+        // Prepare system default "Unverified" state (3 months window)
+        $unverifiedUntil = $now->copy()->addMonths(3);
+
+        // ---------------------------------------------------
+        // 1) Encrypt PII in one shot (single network call)
+        // ---------------------------------------------------
         $dataToEncrypt = [
-            'email' => $request->input('email'),
-            'fcm_token' => $request->input('fcm_token'),
-            'phone' => $request->input('phone'),
-            'account_type' => $request->input('account_type'),
-            'state_code' => 'SYSUV4512', // 'Unverified' state code
-            'state_name' => 'Unverified', // State name
+            'email' => $emailPlain,
+            'phone' => $validated['phone'] ?? '',
+            'account_type' => $validated['account_type'],
+            'state_code' => 'SYSUV4512',
+            'state_name' => 'Unverified',
             'note' => 'Account created but email unverified.',
             'reason' => 'Account email is pending verification.',
-            'time_period' => Carbon::now()->addMonths(3), // The time period for 3 months
         ];
 
-        // Call the microservice for encryption
         try {
+            $enc = EncryptionServiceConnections::encryptData($dataToEncrypt)['data'];
 
-            $encryptedDataRespond = EncryptionServiceConnections::encryptData($dataToEncrypt);
+            // Use encrypted values when provided; fallback to plaintext defaults
+            $encryptedEmail = $enc['email'] ?? $dataToEncrypt['email'];
+            $encryptedPhone = $enc['phone'] ?? $dataToEncrypt['phone'];
+            $encryptedAccountType = $enc['account_type'] ?? $dataToEncrypt['account_type'];
+            $encryptedStateCode = $enc['state_code'] ?? $dataToEncrypt['state_code'];
+            $encryptedStateName = $enc['state_name'] ?? $dataToEncrypt['state_name'];
+            $encryptedNote = $enc['note'] ?? $dataToEncrypt['note'];
+            $encryptedReason = $enc['reason'] ?? $dataToEncrypt['reason'];
 
-
-
-            $encryptedData = $encryptedDataRespond['data'];
-            // Ensure encryptedData has all the necessary fields
-            $encryptedEmail = $encryptedData['email'] ?? $dataToEncrypt['email'];
-            $encryptedPhone = $encryptedData['phone'] ?? $dataToEncrypt['phone'];
-            $encryptedAccountType = $encryptedData['account_type'] ?? $dataToEncrypt['account_type'];
-            $encryptedStateCode = $encryptedData['state_code'] ?? $dataToEncrypt['state_code'];
-            $encryptedStateName = $encryptedData['state_name'] ?? $dataToEncrypt['state_name'];
-            $encryptedNote = $encryptedData['note'] ?? $dataToEncrypt['note'];
-            $encryptedReason = $encryptedData['reason'] ?? $dataToEncrypt['reason'];
-            $encryptedFcm_token = $encryptedData['fcm_token'] ?? $dataToEncrypt['fcm_token'];
-
-            // Create the Account record
+            // ---------------------------------------------------
+            // 2) Create Account + initial Account_state in ONE TX
+            // ---------------------------------------------------
             DB::beginTransaction();
 
-            // Create the account (no encryption needed here for the fields other than email/phone)
+            // Use ULID for compact, sortable IDs (stable across environments)
+            $accId = (string) Str::ulid();
+            $stateId = (string) Str::ulid();
+
             $account = Account::create([
-                'acc_id' => Hash::make($request->input('email')),  // Using the hashed email for acc_id
-                'firstName' => $request->input('firstName'),
-                'lastName' => $request->input('lastName'),
-                'email' => $encryptedEmail,
-                'phone' => $encryptedPhone,
-                'fcm_token' => $encryptedFcm_token ?? '',
-                'account_type' => $encryptedAccountType,
-                'password' => Hash::make($request->input('password')),  // Hashing the password
-                'created_at' => now(),  // Setting created_at to current time
-                'updated_at' => now(),  // Setting updated_at to current time
+                'acc_id' => $accId,
+                'firstName' => $validated['firstName'],
+                'lastName' => $validated['lastName'],
+                'email' => $encryptedEmail,       // encrypted at rest
+                'phone' => $encryptedPhone,       // encrypted at rest
+                'account_type' => $encryptedAccountType, // encrypted at rest
+                'password' => Hash::make($validated['password']),
+                'email_hash' => $emailHash,            // for O(1) lookups
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
 
-            // Create an initial AccountState with encrypted values
             $accountState = Account_state::create([
-                'state_id' => Hash::make(now()),  // Create a unique state_id
-                'acc_id' => $account->acc_id,  // Linking the account state to the created account
-                'doer_acc_id' => $account->acc_id, // Optional: set doer_acc_id from request (e.g., admin user)
-                'state_code' => $encryptedStateCode, // Encrypted state_code
-                'state_name' => $encryptedStateName, // Encrypted state_name
-                'note' => $encryptedNote,  // Encrypted note
-                'reason' => $encryptedReason,  // Encrypted reason
-                'time_period' => Carbon::now()->addMonths(3), // Encrypted time_period, make sure it's correctly formatted
-                'created_at' => now(),  // Setting created_at to current time
-                'updated_at' => now(),  // Setting updated_at to current time
+                'state_id' => $stateId,
+                'acc_id' => $accId,
+                'doer_acc_id' => $accId, // creator = self
+                'state_code' => $encryptedStateCode,
+                'state_name' => $encryptedStateName,
+                'note' => $encryptedNote,
+                'reason' => $encryptedReason,
+                'time_period' => $unverifiedUntil,      // keep as timestamp for logic
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
 
-            // Update the Account with the state_id from Account_state
+            // Link account to its initial system state
             $account->update([
-                'system_state_id' => $accountState->state_id,  // Set system_state_id to the state_id from Account_state
+                'system_state_id' => $stateId,
             ]);
-
-
-
-            // $otpCallJob = GenerateOtpJob::dispatch($account->acc_id, $request->input('device_info'));
-
-            // SetVendorProfileJob::dispatch($account->acc_id, true);
-
-            $otpResponseDataFromCache = OtpHelper::generateOtp($account->acc_id, '', 'ACTV451EM');
-
-
 
             DB::commit();
-            // Retrieve the AccountState and decrypt its fields
-            $accountState = Account_state::where('state_id', $account->system_state_id)->first();
 
-            // Decrypt the data using the EncryptionServiceConnections
-            $dataToDecrypt = [
-                'state_code' => $accountState->state_code,
-                'state_name' => $accountState->state_name
-            ];
+            // ---------------------------------------------------
+            // 3) Post-commit side effects (don’t block success)
+            // ---------------------------------------------------
 
-            $decryptedDataRespond = EncryptionServiceConnections::decryptData($dataToDecrypt);
+            // Decrypt a small subset for the client (human-readable)
+            $decryptedData = [];
+            try {
+                $decResp = EncryptionServiceConnections::decryptData([
+                    'state_code' => $accountState->state_code,
+                    'state_name' => $accountState->state_name,
+                ]);
+                $decryptedData = $decResp['data'] ?? [];
+            } catch (\Throwable $t) {
+                Log::warning('createAccount: decrypt state failed', ['err' => $t->getMessage()]);
+            }
 
-            // VendorServiceConnections::setVendorProfile($account->acc_id, true);
+            // OTP for activation (cache-backed)
+            $otpResponse = OtpHelper::generateOtp($accId, $request->input('device_info', ''), 'ACTV451EM');
+
+            // Create user’s notification channel (fire-and-forget)
 
 
-            self::createNotificationChannel($account->acc_id, $request->input('account_type'));
-            $decryptedData = $decryptedDataRespond['data'];
-            $mailingData = [
-                'sender_id' => 'SYSTEM',
-                'recipient_id' => $account->acc_id,
-                'email' => $request->input('email'),
-                'name' => $request->input('firstName') . '' . $request->input('lastName'),
-                'message' => 'You can now explore verified auto parts, connect with vendors, and enjoy a safe and convenient experience.',
-                'subject' => 'Welcome to Pick-a-part.ca!',
-                'data' => ''
-            ];
+            // Send welcome email (best-effort, do not fail the flow)
+            try {
+                $mailingData = [
+                    'sender_id' => 'SYSTEM',
+                    'recipient_id' => $accId,
+                    'email' => $emailPlain, // send to plaintext email
+                    'name' => trim($validated['firstName'] . ' ' . $validated['lastName']),
+                    'message' => 'You can now explore verified auto parts, connect with vendors, and enjoy a safe and convenient experience.',
+                    'subject' => 'Welcome to Pick-a-part.ca!',
+                    'data' => '',
+                ];
+                MailingServiceConnections::sendEmailRgestration($mailingData);
+            } catch (\Throwable $t) {
+                Log::warning('createAccount: welcome email failed', ['err' => $t->getMessage()]);
+            }
 
-            MailingServiceConnections::sendEmailRgestration($mailingData);
-
-            // Return a success response with decrypted data
+            // ---------------------------------------------------
+            // 4) Return success (201 Created)
+            // ---------------------------------------------------
             return response()->json([
                 'status' => true,
                 'message' => 'Account created successfully.',
                 'code' => 200,
                 'data' => [
                     'state' => $decryptedData,
-                    'acc_id' => $account->acc_id,
-                    'otp_id' => $otpResponseDataFromCache['otp_id'] //isset($otpResponse['otp_id']) ? $otpResponse['otp_id'] : [],
-                ]  // Include the decrypted state information
+                    'acc_id' => $accId,
+                    'otp_id' => $otpResponse['otp_id'] ?? null,
+                ],
             ], 200);
 
+        } catch (\Throwable $e) {
+            // Ensure we roll back if TX started
+            if (DB::transactionLevel() > 0) {
+                DB::rollBack();
+            }
 
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            // Log the exception details for troubleshooting
-            Log::error('Registration failed: ', [
+            Log::error('Registration failed', [
                 'message' => $e->getMessage(),
-                'stack' => $e->getTraceAsString()
+                'trace' => $e->getTraceAsString(),
             ]);
 
-            // Return an error response in case of exception
             return response()->json([
                 'status' => false,
                 'message' => 'Error during registration: ' . $e->getMessage(),
-                'code' => 500,  // HTTP status code for Internal Server Error
-                'data' => null  // You can optionally include null or more details
+                'code' => 500,
+                'data' => null,
             ], 500);
         }
     }

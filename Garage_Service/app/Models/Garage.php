@@ -51,6 +51,10 @@ class Garage extends Model
         return $this->hasMany(AccountsMedia::class, 'gra_id', 'gra_id'); // vend_id is the foreign key
     }
 
+    public function notification()
+    {
+        return $this->hasMany(GarageNotifctions::class, 'gra_id', 'gra_id'); // vend_id is the foreign key
+    }
     public function account()
     {
         return $this->hasMany(Account::class, 'acc_id', 'acc_id'); // vend_id is the foreign key

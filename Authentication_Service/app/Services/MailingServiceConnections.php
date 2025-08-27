@@ -11,22 +11,52 @@ class MailingServiceConnections
     {
         try {
             $url = config('microservices.urls.sendEmail');
-            
+
             $promise = Http::async()->post($url, [
-                'sender_id'     => $dataToSend['sender_id'],
-                'recipient_id'  => $dataToSend['recipient_id'],
-                'email'         => $dataToSend['email'],
-                'name'          => $dataToSend['name'],
-                'message'       => $dataToSend['message'],
-                'subject'       => $dataToSend['subject'],
-                'data'          => $dataToSend['data'],
+                'sender_id' => $dataToSend['sender_id'],
+                'recipient_id' => $dataToSend['recipient_id'],
+                'email' => $dataToSend['email'],
+                'name' => $dataToSend['name'],
+                'message' => $dataToSend['message'],
+                'subject' => $dataToSend['subject'],
+                'data' => $dataToSend['data'],
             ]);
 
             $response = $promise->wait();
 
             return $response->json();
         } catch (\Exception $e) {
-        
+
+
+            return [
+                'status' => false,
+                'message' => 'Error during mailing process: ' . $e->getMessage(),
+                'data' => null
+            ];
+        }
+    }
+
+
+    public static function authSendEmail($dataToSend)
+    {
+        try {
+            $url = config('microservices.urls.authTowSendEmail');
+
+            $promise = Http::async()->post($url, [
+                'sender_id' => $dataToSend['sender_id'],
+                'recipient_id' => $dataToSend['recipient_id'],
+                'email' => $dataToSend['email'],
+                'name' => $dataToSend['name'],
+                'message' => $dataToSend['message'],
+                'subject' => $dataToSend['subject'],
+                'data' => $dataToSend['data'],
+            ]);
+
+            $response = $promise->wait();
+
+            return $response->json();
+        } catch (\Exception $e) {
+
 
             return [
                 'status' => false,
@@ -42,20 +72,20 @@ class MailingServiceConnections
             $url = config('microservices.urls.emailsRegistrationSuccessMail');
 
             $promise = Http::async()->post($url, [
-                'sender_id'     => $dataToSend['sender_id'],
-                'recipient_id'  => $dataToSend['recipient_id'],
-                'email'         => $dataToSend['email'],
-                'name'          => $dataToSend['name'],
-                'message'       => $dataToSend['message'],
-                'subject'       => $dataToSend['subject'],
-                'data'          => $dataToSend['data'],
+                'sender_id' => $dataToSend['sender_id'],
+                'recipient_id' => $dataToSend['recipient_id'],
+                'email' => $dataToSend['email'],
+                'name' => $dataToSend['name'],
+                'message' => $dataToSend['message'],
+                'subject' => $dataToSend['subject'],
+                'data' => $dataToSend['data'],
             ]);
 
             $response = $promise->wait();
 
             return $response->json();
         } catch (\Exception $e) {
-     
+
 
             return [
                 'status' => false,
@@ -64,11 +94,11 @@ class MailingServiceConnections
             ];
         }
     }
-    
-     public static function sendEmailResetPasswordParties($dataToSend)
+
+    public static function sendEmailResetPasswordParties($dataToSend)
     {
         //-------------------------------------------------------------------
-         try {
+        try {
             $url = config('microservices.urls.sendResetPasswordEmailParties');
 
             if (!$url) {
@@ -111,12 +141,12 @@ class MailingServiceConnections
             ];
         }
     }
-    
+
     //----------------------------------------------------------------------------------------
-     public static function sendEmailAccount($dataToSend)
+    public static function sendEmailAccount($dataToSend)
     {
         //-------------------------------------------------------------------
-         try {
+        try {
             $url = config('microservices.urls.sendResetPasswordEmailParties');
 
             if (!$url) {
@@ -158,6 +188,6 @@ class MailingServiceConnections
                 'data' => null
             ];
         }
-    }   
-    
+    }
+
 }

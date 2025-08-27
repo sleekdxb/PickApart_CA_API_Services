@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
-
+use Log;
 class EncryptionServiceConnections
 {
     // Function to handle encryption by calling the microservice
@@ -11,7 +11,6 @@ class EncryptionServiceConnections
     {
         try {
             $url = config('microservices.urls.encryption');
-
             // Send an asynchronous POST request
             $promise = Http::async()->post($url, [
                 'data' => $dataToEncrypt

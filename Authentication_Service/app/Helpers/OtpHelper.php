@@ -3,297 +3,227 @@
 namespace App\Helpers;
 
 use App\Models\Otp;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Hash;
-use App\Services\EncryptionServiceConnections;
-use App\Models\Account_state;
 use App\Models\Account;
 use App\Models\SubVendor;
+use App\Models\Account_state;
+use App\Services\EncryptionServiceConnections;
 use App\Services\MailingServiceConnections;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use App\Jobs\SendMailingEmail;
+use Illuminate\Support\Str;
+
 class OtpHelper
 {
-    public static function generateOtp($acc_id, $sub_vend_id, $action)
+    /**
+     * Create an OTP, store it, try to email it (direct call), and ALWAYS return otp_id.
+     *
+     * @param  string      $acc_id
+     * @param  string|null $sub_vend_id
+     * @param  string|null $action  One of: ACTV451EM, ACTVAUTH451EM, RPASS451EMA, RPASS451EMSV
+     * @return array{status:bool,message:string,email_sent:bool,otp_id:string}
+     */
+    public static function generateOtp($acc_id, $sub_vend_id = null, $action = null): array
     {
-        // Generate a random 6-digit OTP
-        $otp = rand(100000, 999999);
+        // 1) Create OTP & persist (secure RNG; ~6 minutes expiry)
+        $otp = random_int(100000, 999999);
+        $otpId = (string) Str::ulid();
 
-        // Generate a unique OTP ID by hashing the combination of time and OTP
-        $otp_id = Hash::make(Carbon::now()->toDateTimeString() . $otp);
-
-        // Prepare the data to store
         $data = [
-            'otp_id' => $otp_id,
+            'otp_id' => $otpId,
             'acc_id' => $acc_id,
             'otp' => $otp,
             'is_used' => 0,
-            'expires_at' => Carbon::now()->addMinute()->addSeconds(300),
+            'expires_at' => Carbon::now()->addMinutes(6),
         ];
-
-        // Only add 'sub_vend_id' if it is not empty
         if (!empty($sub_vend_id)) {
             $data['sub_vend_id'] = $sub_vend_id;
         }
-
-        // Store OTP in the database
         Otp::create($data);
 
-
-        // Retrieve the account details based on acc_id
+        // 2) Resolve recipient (Account first; if not, SubVendor when provided)
+        $emailCipher = null;
         $account = Account::where('acc_id', $acc_id)->first();
+        $subVendor = null;
 
-        if ($account) {
-            $email = $account->email;
+        if ($account && !empty($account->email)) {
+            $emailCipher = $account->email;
         }
-
-        $subVendor = SubVendor::where('sub_ven_id', $sub_vend_id)->first();
-
-        if ($subVendor) {
-            $email = $subVendor->email;
-        }
-
-        // Decrypt the account's email address
-        $decryptedEmail = EncryptionServiceConnections::decryptData([
-            'email' => $email,
-        ]);
-
-        if ($decryptedEmail && isset($decryptedEmail['data']['email'])) {
-            // Prepare the email data
-            if ($account) {
-                $mailingDataVerifyAccount = [
-                    'sender_id' => $acc_id,
-                    'recipient_id' => $acc_id,
-                    'email' => $decryptedEmail['data']['email'],
-                    'name' => $account->firstName . ' ' . $account->lastName,
-                    'message' => 'Thank you for creating your PickaPart.ae account. Please enter this code to verify your email address.',
-                    'subject' => 'Verify Your Email Address',
-                    'data' => array_map('intval', str_split($otp)), // Convert OTP to array of integers
-                ];
+        if (!$emailCipher && !empty($sub_vend_id)) {
+            $subVendor = SubVendor::where('sub_ven_id', $sub_vend_id)->first();
+            if ($subVendor && !empty($subVendor->email)) {
+                $emailCipher = $subVendor->email;
             }
-            if ($decryptedEmail && isset($decryptedEmail['data']['email'])) {
-                if ($account) {
-                    $mailingDataRestPasswordAccount = [
+        }
+
+        // 3) Decrypt email if available
+        $emailPlain = null;
+        if ($emailCipher) {
+            try {
+                $dec = EncryptionServiceConnections::decryptData(['email' => $emailCipher]);
+                $emailPlain = $dec['data']['email'] ?? null;
+            } catch (\Throwable $e) {
+                Log::warning('Email decryption failed for OTP', ['acc_id' => $acc_id, 'error' => $e->getMessage()]);
+            }
+        }
+
+        // 4) Build email digits payload
+        $digits = array_map('intval', str_split((string) $otp));
+
+        // 5) Send directly (no queue). Don’t fail OTP if email fails.
+        $emailSent = false;
+        try {
+            if ($emailPlain) {
+                if ($action === 'ACTV451EM' && $account) {
+                    $mail = [
                         'sender_id' => $acc_id,
                         'recipient_id' => $acc_id,
-                        'email' => $decryptedEmail['data']['email'],
-                        'name' => $account->firstName . ' ' . $account->lastName,
-                        'message' => "You have submitted a password change request. If it wasn't you, please disregard this email and make sure you can still log into your account. If it was you, then click the button below to change your password",
-                        'subject' => 'Change your Password',
-                        'data' => array_map('intval', str_split($otp)), // Convert OTP to array of integers
+                        'email' => $emailPlain,
+                        'name' => trim($account->firstName . ' ' . $account->lastName),
+                        'message' => 'Thank you for creating your PickaPart.ae account. Please enter this code to verify your email address.',
+                        'subject' => 'Verify Your Email Address',
+                        'data' => $digits,
                     ];
+                    MailingServiceConnections::sendEmail($mail);
+                    $emailSent = true;
                 }
+
+                if ($action === 'ACTVAUTH451EM' && $account) {
+                    // New device / suspicious login
+                    $authMail = [
+                        'sender_id' => $acc_id,
+                        'recipient_id' => $acc_id,
+                        'email' => $emailPlain,
+                        'name' => trim($account->firstName . ' ' . $account->lastName),
+                        'message' => 'Your account was accessed from a new device. If this was you, confirm by entering the OTP.',
+                        'subject' => 'Suspicious Login Detected',
+                        'data' => $digits,
+                    ];
+                    MailingServiceConnections::authSendEmail($authMail);
+                    $emailSent = true;
+                }
+
+                if ($action === 'RPASS451EMA' && $account) {
+                    $mail = [
+                        'sender_id' => $acc_id,
+                        'recipient_id' => $acc_id,
+                        'email' => $emailPlain,
+                        'name' => trim($account->firstName . ' ' . $account->lastName),
+                        'message' => "You requested a password change. If this wasn't you, please ignore this email.",
+                        'subject' => 'Change your Password',
+                        'data' => $digits,
+                    ];
+                    MailingServiceConnections::sendEmail($mail);
+                    $emailSent = true;
+                }
+
+                if ($action === 'RPASS451EMSV' && $subVendor) {
+                    $mail = [
+                        'sender_id' => $sub_vend_id,
+                        'recipient_id' => $sub_vend_id,
+                        'email' => $emailPlain,
+                        'name' => trim($subVendor->first_name . ' ' . $subVendor->last_name),
+                        'message' => "You requested a password change. If this wasn't you, please ignore this email.",
+                        'subject' => 'Change your Password',
+                        'data' => $digits,
+                    ];
+                    MailingServiceConnections::sendEmail($mail);
+                    $emailSent = true;
+                }
+            } else {
+                Log::info('OTP email not sent: empty decrypted email', ['acc_id' => $acc_id, 'action' => $action]);
             }
-
-            if ($subVendor) {
-                $mailingDataRestPasswordSubVendor = [
-                    'sender_id' => $sub_vend_id,
-                    'recipient_id' => $sub_vend_id,
-                    'email' => $decryptedEmail['data']['email'],
-                    'name' => $subVendor->first_name . ' ' . $subVendor->last_name,
-                    'message' => "You have submitted a password change request. If it wasn't you, please disregard this email and make sure you can still log into your account. If it was you, then click the button below to change your password",
-                    'subject' => 'Change your Password',
-                    'data' => array_map('intval', str_split($otp)), // Convert OTP to array of integers
-                ];
-            }
-
-            try {
-                // Attempt to send the email using the MailingServiceConnections
-                // $mailingRespond = MailingServiceConnections::sendEmail($mailingData);
-                if ($action == 'ACTV451EM' && $account) {
-                    SendMailingEmail::dispatch($mailingDataVerifyAccount);
-                }
-
-                if ($action == 'RPASS451EMA' && $account) {
-                    SendMailingEmail::dispatch($mailingDataRestPasswordAccount);
-                }
-
-                if ($action == 'RPASS451EMSV' && $subVendor) {
-                    SendMailingEmail::dispatch($mailingDataRestPasswordSubVendor);
-                }
-
-
-                // If successful, return a success response with otp_id
-                return [
-                    'status' => true,
-                    'message' => 'An OTP has been sent to your email address for verification. Please check your inbox and enter the OTP to verify your email.',
-                    'otp_id' => $otp_id, // Include otp_id in the response
-                ];
-            } catch (\Exception $e) {
-                // Handle any exceptions that occur during the email sending process
-                return [
-                    'status' => false,
-                    'message' => 'Failed to send email. Error: ' . $e->getMessage(),
-                    'otp_id' => null, // Return null for otp_id on error
-                ];
-            }
+        } catch (\Throwable $e) {
+            Log::error('Failed to send OTP email', ['acc_id' => $acc_id, 'action' => $action, 'error' => $e->getMessage()]);
+            $emailSent = false;
         }
 
-        // If the email decryption failed, return a failure response
+        // 6) Always return otp_id so client can proceed to /verify-otp
         return [
-            'status' => false,
-            'message' => 'Failed to retrieve the email address.',
-            'otp_id' => null, // Return null for otp_id on error
+            'status' => true,
+            'message' => $emailSent ? 'OTP sent.' : 'OTP created. Email not sent.',
+            'email_sent' => $emailSent,
+            'otp_id' => $otpId,
         ];
     }
 
-    // Function to verify OTP
-    public static function verifyOtp($otp_id, $otp, $device_info, $operation_code)
+    /**
+     * Verify OTP (all operations). Marks OTP used on success.
+     * Returns true on success, false otherwise.
+     *
+     * @param  string      $otp_id
+     * @param  string|int  $otp
+     * @param  mixed       $device_info
+     * @param  string|null $operation_code
+     * @return bool
+     */
+    public static function verifyOtp($otp_id, $otp, $device_info = null, $operation_code = null): bool
     {
-        if ($operation_code === 'RPASS451EMA') {
-            // Fetch the OTP record based on otp_id, otp, and is_used = 0
-            $otpRecord = Otp::where('otp_id', $otp_id)
-                ->where('otp', $otp)
-                ->where('is_used', 0)
-                ->first();
+        // 1) Locate active OTP
+        $otpRecord = Otp::where('otp_id', $otp_id)
+            ->where('otp', $otp)
+            ->where('is_used', 0)
+            ->first();
 
-
-
-            // If no OTP record is found or the OTP is expired, return false
-            if (!$otpRecord) {
-                Log::warning('OTP record not found or has already been used.');
-                return false;
-            }
-
-            // Ensure the OTP is not expired
-            if (Carbon::now()->gt($otpRecord->expires_at)) {
-                Log::warning('OTP has expired.', ['expires_at' => $otpRecord->expires_at]);
-                return false;  // OTP expired
-            }
+        if (!$otpRecord) {
+            Log::warning('OTP not found or already used', ['otp_id' => $otp_id]);
+            return false;
         }
 
-        if ($operation_code === 'RPASS451EMSV') {
-            // Fetch the OTP record based on otp_id, otp, and is_used = 0
-            $otpRecord = Otp::where('otp_id', $otp_id)
-                ->where('otp', $otp)
-                ->where('is_used', 0)
-                ->first();
-
-
-
-            // If no OTP record is found or the OTP is expired, return false
-            if (!$otpRecord) {
-                Log::warning('OTP record not found or has already been used.');
-                return false;
-            }
-
-            // Ensure the OTP is not expired
-            if (Carbon::now()->gt($otpRecord->expires_at)) {
-                Log::warning('OTP has expired.', ['expires_at' => $otpRecord->expires_at]);
-                return false;  // OTP expired
-            }
+        // 2) Check expiry
+        if (Carbon::now()->gt($otpRecord->expires_at)) {
+            Log::warning('OTP expired', ['otp_id' => $otp_id, 'expires_at' => $otpRecord->expires_at]);
+            return false;
         }
 
-
-        // Get the acc_id from the OTP record
-
-
-        // Check if operation_code is 'ACTV451EM'
+        // 3) Operation-specific side effects
         if ($operation_code === 'ACTV451EM') {
-            $otpRecord = Otp::where('otp_id', $otp_id)
-                ->where('otp', $otp)
-                ->where('is_used', 0)
-                ->first();
-
-            // If no OTP record is found or the OTP is expired, return false
-            if (!$otpRecord) {
-                Log::warning('OTP record not found or has already been used.');
+            // Email verification → write a verified Account_state and update system_state_id
+            $account = Account::where('acc_id', $otpRecord->acc_id)->first();
+            if (!$account) {
+                Log::warning('Account not found during email verification', ['acc_id' => $otpRecord->acc_id]);
                 return false;
             }
 
-            // Ensure the OTP is not expired
-            if (Carbon::now()->gt($otpRecord->expires_at)) {
-                Log::warning('OTP has expired.', ['expires_at' => $otpRecord->expires_at]);
-                return false;  // OTP expired
-            }
-
-            // Get the acc_id from the OTP record
-            $accountId = $otpRecord->acc_id;
-            // Fetch the account using the acc_id
-            $account = Account::where('acc_id', $accountId)->first();
-
-            if (!$account) {
-
-                return false; // If the account is not found, return false
-            }
-
-            // Prepare data to encrypt
-            $dataToEncrypt = [
-                'state_code' => 'SYSV4512', // state_code
-                'state_name' => 'Verified', // state_name
-                'note' => 'Account email is verified.', // note
-                'reason' => 'Account email verification.' // reason
+            $payload = [
+                'state_code' => 'SYSV4512',
+                'state_name' => 'Verified',
+                'note' => 'Account email is verified.',
+                'reason' => 'Account email verification.',
             ];
 
-            // Encrypt the data using EncryptionServiceConnections::encryptData
             try {
-                $encryptedDataRespond = EncryptionServiceConnections::encryptData($dataToEncrypt);
+                $enc = EncryptionServiceConnections::encryptData($payload);
+                $d = $enc['data'];
 
-                if (!$encryptedDataRespond['status']) {
-                    // Log the error details for troubleshooting
-                    Log::error('Encryption failed: ', [
-                        'message' => $encryptedDataRespond['message'],
-                        'data' => $dataToEncrypt
-                    ]);
-
-                    // If encryption fails, return an error response
-                    return response()->json([
-                        'status' => false,
-                        'message' => $encryptedDataRespond['message'],
-                        'code' => $encryptedDataRespond['code'],
-                        'data' => null
-                    ], $encryptedDataRespond['code']);
-                }
-            } catch (\Exception $e) {
-                // Log the exception details for troubleshooting
-                Log::error('Exception during encryption: ', [
-                    'message' => $e->getMessage(),
-                    'trace' => $e->getTraceAsString(),
-                    'data' => $dataToEncrypt
+                $accountState = Account_state::create([
+                    'state_id' => Hash::make(Carbon::now()), // ensure your column can store this size; consider Str::ulid()
+                    'acc_id' => $account->acc_id,
+                    'doer_acc_id' => $account->acc_id,
+                    'state_code' => $d['state_code'] ?? null,
+                    'state_name' => $d['state_name'] ?? null,
+                    'note' => $d['note'] ?? null,
+                    'reason' => $d['reason'] ?? null,
+                    'time_period' => Carbon::now()->addYears(99),
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]);
 
-                // Return a response with the exception message
-                return response()->json([
-                    'status' => false,
-                    'message' => 'An unexpected error occurred during encryption.',
-                    'code' => 500,
-                    'data' => null
-                ], 500);
+                $account->update(['system_state_id' => $accountState->state_id]);
+            } catch (\Throwable $e) {
+                Log::error('Exception during account verification', ['acc_id' => $otpRecord->acc_id, 'error' => $e->getMessage()]);
+                return false;
             }
-
-            $finalEncryptedData = $encryptedDataRespond['data'];
-            // Extract encrypted values
-            $encryptedStateCode = $finalEncryptedData['state_code'];
-            $encryptedStateName = $finalEncryptedData['state_name'];
-            $encryptedNote = $finalEncryptedData['note'];
-            $encryptedReason = $finalEncryptedData['reason'];
-
-            // Create the account state
-            $accountState = Account_state::create([
-                'state_id' => Hash::make(Carbon::now()),  // Generate unique state_id
-                'acc_id' => $account->acc_id,  // Linking the account state to the account
-                'doer_acc_id' => $account->acc_id, // Assuming this is the account performing the action
-                'state_code' => $encryptedStateCode,
-                'state_name' => $encryptedStateName,
-                'note' => $encryptedNote,
-                'reason' => $encryptedReason,
-                'time_period' => Carbon::now()->addYears(99), // Lifetime period
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
-
-            // Update the account with the new system_state_id
-            $account->update([
-                'system_state_id' => $accountState->state_id,  // Set system_state_id
-            ]);
         }
 
-        // Mark the OTP as used to prevent further use
+        // You can add more side-effects for:
+        // - ACTVAUTH451EM: trust device / log device_info
+        // - RPASS451EMA / RPASS451EMSV: mark for next step, etc.
+
+        // 4) Mark OTP as used
         $otpRecord->is_used = 1;
         $otpRecord->save();
 
-        // Return true to indicate successful OTP verification
         return true;
     }
-
 }

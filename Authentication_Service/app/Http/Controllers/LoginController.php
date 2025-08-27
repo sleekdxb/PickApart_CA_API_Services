@@ -29,7 +29,8 @@ class LoginController extends Controller
         // Validate incoming request data
         $validator = Validator::make($request->all(), [
             'acc_d' => 'nullable|string',
-            'email' => 'required|email',  // Basic email validation
+            'email' => 'required|email',
+            'fcm_token' => 'required|string',  // Basic email validation
             'password' => 'required|string|min:8',  // Basic password validation
         ]);
 
@@ -48,14 +49,9 @@ class LoginController extends Controller
         }
 
         // Extract the request data
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $ipAddress = $request->ip();
-        $agentInfo = $request->header('User-Agent');
-        $acc_id = $request->input('acc_id');
 
         // Call the login helper to handle authentication and session creation
-        return LoginHelper::login($acc_id, $email, $password, $ipAddress, $agentInfo, $request);
+        return LoginHelper::login($request);
     }
 
 
@@ -68,7 +64,8 @@ class LoginController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'session_id' => 'required|string'
+            'session_id' => 'required|string',
+             'account_type' => ['required', 'string', 'in:STR,Vendor,Garage'],
         ]);
 
         if ($validator->fails()) {

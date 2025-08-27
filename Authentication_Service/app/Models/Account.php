@@ -2,17 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable; // ✅ Makes the model authenticatable
-use Illuminate\Notifications\Notifiable;               // ✅ For notifications
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Tymon\JWTAuth\Contracts\JWTSubject;               // ✅ For JWT
-use Laravel\Sanctum\HasApiTokens;                     // ✅ For Sanctum
+use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;   // ✅ JWT interface
 
 class Account extends Authenticatable implements JWTSubject
 {
-    use HasFactory, HasApiTokens, Notifiable; // ✅ Traits in one line
+    use HasFactory, HasApiTokens, Notifiable;
 
-    protected $table = 'accounts'; // Your custom table name
+    protected $table = 'accounts';
+
+    // ✅ Your PK is a string (ULID/UUID): tell Eloquent
+    protected $primaryKey = 'acc_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         'acc_id',
@@ -22,35 +27,37 @@ class Account extends Authenticatable implements JWTSubject
         'phone',
         'account_type',
         'fcm_token',
+        'email_hash',
         'access_array',
         'profile_url',
         'system_state_id',
         'firstName',
         'lastName',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
-    /**
-     * JWT: Get the identifier that will be stored in the JWT payload.
-     *
-     * @return mixed
-     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'fcm_token',
+    ];
+
+    protected $casts = [
+        'access_array' => 'array',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    // --- JWTSubject ---
     public function getJWTIdentifier()
     {
-        return $this->getKey(); // The primary key (usually id)
+        // MUST return a non-null string (be explicit)
+        return (string) $this->getKey(); // -> acc_id
     }
-        protected $hidden = [
-        'fcm_token'
-    ];
 
-    /**
-     * JWT: Return a key value array, containing any custom claims to be added to JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
+    public function getJWTCustomClaims(): array
     {
-        return []; // You can return custom claims here
+        return [];
     }
 }
