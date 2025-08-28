@@ -79,9 +79,13 @@ class OtpController extends Controller
     public function verifyOtp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'otp_id' => 'required|string|exists:otps,otp_id', // Ensure otp_id exists in the OTP table
+            'otp_id' => 'required|string|exists:otps,otp_id',
             'otp' => 'required|string',
-            'operation_code' => 'required|string',
+            // restrict to the ops you currently support; add more as needed
+            'operation_code' => 'required|string|in:ACTV451EM,ACTVAUTH451EM',
+            // session_id is required only for ACTVAUTH451EM
+            'session_id' => 'nullable|string|required_if:operation_code,ACTVAUTH451EM',
+            'device_info' => 'nullable', // array or JSON string
         ]);
 
         if ($validator->fails()) {
@@ -92,24 +96,48 @@ class OtpController extends Controller
             ], 400);
         }
 
-        // If device_info is provided, decode it and check for required keys
+        // Normalize device_info to array
+        $deviceInfo = $request->input('device_info');
+        if (is_string($deviceInfo)) {
+            $decoded = json_decode($deviceInfo, true);
+            $deviceInfo = is_array($decoded) ? $decoded : ['raw' => $deviceInfo];
+        } elseif (!is_array($deviceInfo)) {
+            $deviceInfo = [];
+        }
+
+        $result = OtpHelper::verifyOtp(
+            $request->otp_id,
+            $request->otp,
+            $deviceInfo,
+            $request->operation_code,
+            $request->input('session_id') // may be null unless ACTVAUTH451EM
+        );
 
 
-        // Now, you can safely use $device_info array with all required keys.
 
-
-        $isVerified = OtpHelper::verifyOtp($request->otp_id, $request->otp, $request->device_info, $request->operation_code);
-        Log::info('isVerified:', [$isVerified]);
-        if ($isVerified) {
-            return response()->json([
-                'status' => true,
-                'message' => 'OTP verified successfully',
-            ], 200);
-        } else {
+        if (!($result['ok'] ?? false)) {
             return response()->json([
                 'status' => false,
-                'message' => 'Invalid or expired OTP',
+                'message' => $result['message'] ?? 'Invalid or expired OTP',
             ], 400);
         }
+
+        // Build 200 response:
+        // - ACTVAUTH451EM: include session_id + token
+        // - otherwise: classic shape
+        if ($request->operation_code === 'ACTVAUTH451EM') {
+            return response()->json([
+                'status' => true,
+                'message' => $result['message'] ?? 'OTP verified successfully',
+                'session_id' => $result['session_id'] ?? null,
+                'token' => $result['access_token'] ?? null,
+            ], 200);
+        }
+
+        // All other ops → old 200
+        return response()->json([
+            'status' => true,
+            'message' => $result['message'] ?? 'OTP verified successfully',
+        ], 200);
     }
 }

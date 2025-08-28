@@ -65,7 +65,7 @@ class LoginController extends Controller
 
         $validator = Validator::make($request->all(), [
             'session_id' => 'required|string',
-             'account_type' => ['required', 'string', 'in:STR,Vendor,Garage'],
+            'account_type' => 'required|string',
         ]);
 
         if ($validator->fails()) {

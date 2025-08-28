@@ -36,7 +36,7 @@ Route::post('/login', [LoginController::class, 'login']);
 
 // Route to log out the authenticated user. This POST request will invoke the 'logout' method in the LoginController to log the user out.
 //Route::post('/logout', [LoginController::class, 'logout']);
-Route::middleware(['auth:api'])->post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 Route::post('/restPassword', [ResetPasswordController::class, 'resetPassword']);
 
