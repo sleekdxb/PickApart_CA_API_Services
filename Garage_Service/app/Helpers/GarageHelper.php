@@ -591,6 +591,12 @@ class GarageHelper
         $garageQuery = Garage::query()->with('files', 'notification')->where('acc_id', $request->acc_id);
 
         $account = Account::where('acc_id', $request->acc_id)->first();
+        if (!$account) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Account not found.',
+            ], 404);
+        }
         $accountInfo = [
             'email' => $account->email,
             'phone' => $account->phone,

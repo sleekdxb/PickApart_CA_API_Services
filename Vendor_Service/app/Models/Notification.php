@@ -75,4 +75,8 @@ class Notification extends Model
     {
         return $this->belongsTo(Part::class, 'vend_id'); // vend_id is the foreign key
     }
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class, 'vend_id'); // vend_id is the foreign key
+    }
 }

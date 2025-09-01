@@ -57,5 +57,10 @@ class Vendor extends Model
         return $this->hasMany(AccountState::class, 'acc_id', 'acc_id');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'vend_id', 'vend_id');
+    }
+
 
 }

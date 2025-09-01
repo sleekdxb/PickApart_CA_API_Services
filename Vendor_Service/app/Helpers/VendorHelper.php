@@ -31,7 +31,7 @@ class VendorHelper
         try {
             // Query the Vendor model by acc_id
             // $vendor = Vendor::query()->with('files.state', 'vendor_state', 'account_state')->where('acc_id', $acc_id);
-            $vendor = Vendor::where('acc_id', $acc_id)->with('files.state', 'vendor_state', 'account_state')->get();
+            $vendor = Vendor::where('acc_id', $acc_id)->with('notifications', 'files.state', 'vendor_state', 'account_state')->get();
 
             // If vendor not found
             if (!$vendor) {
@@ -488,9 +488,9 @@ class VendorHelper
                     ]);
                 }
             }
-            
-            
-             $mailingData = [
+
+
+            $mailingData = [
                 'sender_id' => 'SYSTEM',
                 'recipient_id' => $vendor->acc_id,
                 'email' => $request->input('email'),
@@ -885,7 +885,7 @@ class VendorHelper
             // You can include the account info here if needed
         ], 200);
     }
- public static function getPartVendorProfileById(Request $request)
+    public static function getPartVendorProfileById(Request $request)
     {
         try {
             // Validate inputs
