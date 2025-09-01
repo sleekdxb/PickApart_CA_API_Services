@@ -26,7 +26,7 @@ class PartName extends Model
 
     public function part()
     {
-        return $this->belongsTo(Part::class, 'cat_id'); // vend_id is the foreign key
+        return $this->belongsTo(Part::class, 'sub_cat_id'); // vend_id is the foreign key
     }
 
 }

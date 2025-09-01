@@ -42,7 +42,7 @@ class Part extends Model
 
     public function inventory()
     {
-        return $this->hasOne(Inventory::class, 'vend_id', 'vend_id'); // vend_id is the foreign key
+        return $this->hasOne(Inventory::class, 'inve_id', 'inve_id'); // vend_id is the foreign key
     }
 
     public function membership()
@@ -83,7 +83,7 @@ class Part extends Model
     }
     public function partName()
     {
-        return $this->hasOne(PartName::class, 'cat_id', 'cat_id'); // vend_id is the foreign key
+        return $this->hasOne(PartName::class, 'part_name_id', 'sub_cat_id'); // vend_id is the foreign key
     }
 
 

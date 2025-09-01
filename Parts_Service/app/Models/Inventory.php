@@ -30,7 +30,7 @@ class Inventory extends Model
 
     public function part()
     {
-        return $this->belongsTo(Part::class, 'vend_id'); // vend_id is the foreign key
+        return $this->belongsTo(Part::class, 'inve_id'); // vend_id is the foreign key
     }
 
 }
